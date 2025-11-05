@@ -1,0 +1,109 @@
+<div class="dashboard-container">
+  <div class="welcome-section animate__animated animate__fadeInDown">
+    <h1 class="mat-display-1 fw-bold">
+      <mat-icon class="me-2" color="primary">dashboard</mat-icon>
+      Welcome to <span class="brand-text">Gecko Admin Portal</span>
+    </h1>
+    <p class="text-muted lead mt-3">
+      Manage your business effortlessly — explore reports, insights, and settings from here.
+    </p>
+  </div>
+
+  <div class="dashboard-cards row g-4 mt-5 animate__animated animate__fadeInUp">
+
+    <!-- Products -->
+    <div class="col-md-4" (click)="redirectToProducts()">
+      <mat-card class="dashboard-card hover-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar color="accent">inventory_2</mat-icon>
+          <mat-card-title>Products</mat-card-title>
+          <mat-card-subtitle>Manage Products</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>View your traffic, conversions, and performance metrics in one place.</p>
+          <p>{{ dashboardCount?.products }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary">Manage Products</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <!-- Users -->
+    <div class="col-md-4" (click)="redirectToUsers()">
+      <mat-card class="dashboard-card hover-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar color="warn">group</mat-icon>
+          <mat-card-title>Users</mat-card-title>
+          <mat-card-subtitle>Manage Accounts</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Control user roles, permissions, and activity directly from your dashboard.</p>
+          <p>{{ dashboardCount?.users }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="accent">Manage Users</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <!-- Category -->
+    <div class="col-md-4" (click)="redirectToCategory()">
+      <mat-card class="dashboard-card hover-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar color="primary">category</mat-icon>
+          <mat-card-title>Category</mat-card-title>
+          <mat-card-subtitle>Manage Categories</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Organize and manage your product categories easily.</p>
+          <p>{{ dashboardCount?.categories }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="warn">Manage Categories</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <!-- Second Row -->
+    <div class="row g-4 mt-3 justify-content-center">
+
+      <!-- Orders -->
+      <div class="col-md-4" (click)="redirectToOrders()">
+        <mat-card class="dashboard-card hover-card">
+          <mat-card-header>
+            <mat-icon mat-card-avatar color="primary">shopping_cart</mat-icon>
+            <mat-card-title>Orders</mat-card-title>
+            <mat-card-subtitle>Manage Orders</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Track, process, and manage your orders efficiently.</p>
+            <p>{{ dashboardCount?.orders }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="warn">Manage Orders</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <!-- Customers -->
+      <div class="col-md-4" (click)="redirectToCustomers()">
+        <mat-card class="dashboard-card hover-card">
+          <mat-card-header>
+            <mat-icon mat-card-avatar color="accent">person</mat-icon>
+            <mat-card-title>Customers</mat-card-title>
+            <mat-card-subtitle>Manage Customers</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Manage your customers, profiles, and relationships easily.</p>
+            <p>{{ dashboardCount?.customers }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary">Manage Customers</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>
+</div>

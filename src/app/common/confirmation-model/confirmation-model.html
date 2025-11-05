@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <p>{{message}}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn btn-danger me-2" (click)="closeDialog(false)">No Thanks</button>
+  <button class="btn btn-primary" (click)="closeDialog(true)" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

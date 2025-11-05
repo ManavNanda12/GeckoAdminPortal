@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>{{userId > 0 ? 'Edit User' : 'Add User'}}</h2>
+<form [formGroup]="userForm" (ngSubmit)="submitUserForm()">
+<mat-dialog-content>
+    <div class="mb-2">
+        <mat-form-field class="w-100">
+          <mat-label>User Name</mat-label>
+          <input matInput formControlName="userName">
+        </mat-form-field>
+        <mat-error *ngIf="submitted && userForm.get('userName')?.hasError('required')">
+          User Name is required.
+        </mat-error>
+    </div>
+    <div class="mt-2">
+        <mat-form-field class="w-100">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="userEmail">
+        </mat-form-field>
+        <mat-error *ngIf="submitted && userForm.get('userEmail')?.hasError('required')">
+          Email is required.
+        </mat-error>
+        <mat-error *ngIf="submitted && !(userForm.get('userEmail')?.hasError('required')) && userForm.get('userEmail')?.hasError('email')">
+          Email is not valid.
+        </mat-error>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="btn btn-danger me-2" type="button" (click)="closeDialog(false)">Close</button>
+    <button class="btn btn-primary" type="submit" cdkFocusInitial>Save</button>
+</mat-dialog-actions>
+</form>

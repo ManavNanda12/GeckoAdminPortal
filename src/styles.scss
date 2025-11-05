@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+/* Ensure full height */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Make the app container a flex column */
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.mat-mdc-paginator .mat-mdc-select {
+    text-align: center !important;
+}

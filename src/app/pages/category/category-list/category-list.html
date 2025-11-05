@@ -1,0 +1,82 @@
+<!-- load parent categories -->
+<div *ngIf="selectedParentCategory == null">
+  <div class="main-parent-categories row align-items-center">
+    <div class="col">
+      <h3>Parent Categories</h3>
+    </div>
+    <div class="col text-end">
+      <button class="btn btn-primary" (click)="addeditCategory(null,true)">Add Category</button>
+    </div>
+  </div>
+  <hr />
+  
+  <div class="main-categories-list p-2">
+    <div class="row">
+      <!-- Fixed: Added $ suffix and kept | async -->
+      <div class="col-md-4 p-2" *ngFor="let category of parentcategoryList$ | async">
+        <mat-card class="example-card w-100 h-100" appearance="outlined">
+          <mat-card-header class="mb-2">
+            <mat-card-title>{{category.categoryName}}</mat-card-title>
+          </mat-card-header>
+          <img
+            mat-card-image
+            src="{{category.imageUrl}}"
+            class="img-fluid"
+            (error)="handleImageError($event)"
+            alt="Photo of a Shiba Inu"
+            (click)="selectSubCategory(category)"
+          />
+          <mat-card-content>
+            <p>{{category.categoryName}}</p>
+          </mat-card-content>
+          <mat-card-actions class="gap-2">
+            <button class="btn btn-warning" (click)="addeditCategory(category)">Edit</button>
+            <button class="btn btn-secondary" (click)="selectSubCategory(category)">Products</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="selectedParentCategory != null">
+  <div class="main-parent-categories row align-items-center">
+    <div class="col">
+      <h3>
+        <span (click)="selectedParentCategory = null" class="me-2 cursor-pointer"><i class="fas fa-arrow-left"></i></span> 
+        <span class="text-primary">Child Categories of : </span> {{selectedParentCategory.categoryName}}
+      </h3>
+    </div>
+    <div class="col text-end">
+      <button class="btn btn-primary" (click)="addeditCategory(null,true)">Add Category</button>
+    </div>
+  </div>
+  <hr />
+  
+  <div class="main-categories-list p-2">
+    <div class="row">
+      <!-- Fixed: Added $ suffix and | async -->
+      <div class="col-md-4 p-2" *ngFor="let category of childcategoryList$ | async">
+        <mat-card class="example-card w-100 h-100" appearance="outlined">
+          <mat-card-header class="mb-2">
+            <mat-card-title>{{category.categoryName}}</mat-card-title>
+          </mat-card-header>
+          <img
+            mat-card-image
+            src="{{category.imageUrl}}"
+            class="img-fluid"
+            (error)="handleImageError($event)"
+            alt="Photo of a Shiba Inu"
+          />
+          <mat-card-content>
+            <p>{{category.categoryName}}</p>
+          </mat-card-content>
+          <mat-card-actions class="gap-2">
+            <button class="btn btn-warning" (click)="addeditCategory(category)">Edit</button>
+            <button class="btn btn-secondary" (click)="selectedParentCategory = null">Back</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

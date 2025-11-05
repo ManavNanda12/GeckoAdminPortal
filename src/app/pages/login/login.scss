@@ -1,0 +1,55 @@
+.login-wrapper {
+    background: linear-gradient(135deg, #4a90e2, #9013fe);
+  }
+  
+  .login-card {
+    width: 350px;
+    background: #fff;
+    animation: slideDown 0.8s ease;
+    border-radius: 16px !important;
+  }
+  
+  h3 {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .animate-field {
+    animation: fadeInUp 0.6s ease;
+  }
+  
+  .login-btn {
+    border-radius: 25px;
+    padding: 10px 0;
+    font-size: 16px;
+    transition: transform 0.2s ease;
+  }
+  
+  .login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Animations */
+  @keyframes slideDown {
+    from {
+      transform: translateY(-40px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  

@@ -1,0 +1,53 @@
+<h2 mat-dialog-title class="text-center fw-bold text-primary">
+    {{ productDetail.productName }}
+  </h2>
+  <hr class="mb-3">
+  
+  <mat-dialog-content class="p-3">
+    <div class="row text-center">
+      <!-- Product Image -->
+      <div class="col-12 mb-3">
+        <img [src]="productDetail.productImage"
+             (error)="handleImageError($event)"
+             class="img-fluid rounded shadow-sm"
+             alt="Product Image"
+             style="max-height: 250px; object-fit: contain;">
+      </div>
+  
+      <!-- Product Info -->
+      <div class="col-12 text-start mb-3">
+        <h6 class="fw-bold">Description</h6>
+        <p class="text-muted mb-0">{{ productDetail.productDescription }}</p>
+      </div>
+  
+      <div class="col-md-6 col-12 text-start mb-2">
+        <h6 class="fw-bold">Price</h6>
+        <p class="text-success fw-semibold mb-0">₹ {{ productDetail.price }}</p>
+      </div>
+  
+      <div class="col-md-6 col-12 text-start mb-2">
+        <h6 class="fw-bold">SKU</h6>
+        <p class="text-muted mb-0">{{ productDetail.sku }}</p>
+      </div>
+
+      <div class="col-12 text-start mb-2">
+        <h6 class="fw-bold">Stock</h6>
+        <p class="text-muted mb-0" *ngIf="!showEditStockForm">{{ productStockDetails?.quantity ?? 0 }}</p>
+        <button class="btn btn-primary mt-2" (click)="editStock()" *ngIf="!showEditStockForm">Edit Stock</button>
+        <form *ngIf="showEditStockForm" [formGroup]="stockForm" (ngSubmit)="updateStock()">
+          <input type="number" class="form-control" placeholder="Enter Stock Quantity" formControlName="quantity">
+          <div class="d-flex gap-2 mt-2">
+            <button class="btn btn-primary" type="submit">Update Stock</button>
+            <button class="btn btn-danger" (click)="showEditStockForm = false">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end" class="px-3 pb-3">
+    <button class="btn btn-danger" (click)="closeDialog(false)">
+      Close
+    </button>
+  </mat-dialog-actions>
+  

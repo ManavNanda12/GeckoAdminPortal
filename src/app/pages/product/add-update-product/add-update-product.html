@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>
+    {{ productId > 0 ? 'Edit Product' : 'Add Product' }}
+  </h2>
+  
+  <form [formGroup]="productForm" (ngSubmit)="submitProductForm()">
+  <mat-dialog-content>
+      <div class="mb-2">
+          <mat-form-field class="w-100">
+            <mat-label>Product Name</mat-label>
+            <input matInput formControlName="productName">
+            <mat-error *ngIf="submitted && productForm.get('productName')?.hasError('required')">
+              Product Name is required.
+            </mat-error>
+          </mat-form-field>
+      </div>
+      <div class="mb-2">
+        <mat-form-field class="w-100">
+          <mat-label>Product Description</mat-label>
+          <textarea matInput formControlName="productDescription"></textarea>
+          <mat-error *ngIf="submitted && productForm.get('productDescription')?.hasError('required')">
+            Product Description is required.
+          </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="mb-2">
+        <mat-form-field class="w-100">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="categoryId">
+                <mat-option *ngFor="let category of categories" [value]="category.categoryId">
+                    {{ category.categoryName }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="submitted && productForm.get('categoryId')?.hasError('required')">
+                Category is required.
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="mb-2">
+        <mat-form-field class="w-100">
+            <mat-label>Price</mat-label>
+            <input matInput formControlName="price"/>
+            <mat-error *ngIf="submitted && productForm.get('price')?.hasError('required')">
+              Price is required.
+            </mat-error>
+          </mat-form-field>
+    </div>
+    <div class="mb-2">
+        <mat-form-field class="w-100">
+            <mat-label>SKU</mat-label>
+            <input matInput formControlName="sku"/>
+            <mat-error *ngIf="submitted && productForm.get('sku')?.hasError('required')">
+              SKU is required.
+            </mat-error>
+          </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+      <button class="btn btn-danger me-2" type="button" (click)="closeDialog(false)">Close</button>
+      <button class="btn btn-primary" type="submit" cdkFocusInitial>Save</button>
+  </mat-dialog-actions>
+  </form>
+  

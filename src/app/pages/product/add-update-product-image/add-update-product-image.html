@@ -1,0 +1,64 @@
+<!-- Dialog Header -->
+<div class="dialog-header">
+  <h4 class="dialog-title">Upload Product Images <small>(Max 5)</small></h4>
+</div>
+
+<form [formGroup]="imageForm" (ngSubmit)="submitImages()">
+  <mat-dialog-content class="dialog-body">
+    <!-- Upload Box -->
+    <div
+      class="upload-box"
+      (click)="fileInput.click()"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+      [class.dragging]="isDragging"
+      *ngIf="imagePreviews.length < 5"
+    >
+      <input
+        type="file"
+        #fileInput
+        (change)="onFilesSelected($event)"
+        accept="image/*"
+        multiple
+        style="display: none;"
+      />
+      <mat-icon class="upload-icon">add_photo_alternate</mat-icon>
+      <p class="text">Click or drag images here (up to 5)</p>
+    </div>
+
+    <!-- Preview Grid -->
+    <div class="preview-grid" *ngIf="imagePreviews.length > 0">
+      <div 
+        class="preview-item" 
+        *ngFor="let img of imagePreviews; let i = index"
+        [class.primary]="img.isPrimary"
+      >
+        <span class="primary-badge" *ngIf="img.isPrimary">Primary</span>
+        <img 
+          [src]="img.projectUrl" 
+          alt="Preview" 
+          (click)="setPrimaryImage(img)" 
+          title="Click to set as primary"
+        />
+        <button 
+          type="button" 
+          class="remove-btn" 
+          (click)="removeImage(i); $event.stopPropagation()" 
+          title="Remove"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog-actions">
+    <button class="btn btn-cancel" type="button" (click)="closeDialog(false)">
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-primary" [disabled]="newImageCount === 0">
+      Upload {{ newImageCount }} Image{{ newImageCount !== 1 ? 's' : '' }}
+    </button>
+  </mat-dialog-actions>
+</form>

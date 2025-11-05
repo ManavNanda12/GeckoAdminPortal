@@ -1,0 +1,16 @@
+<div class="app-container" [class.sidebar-collapsed]="isSidebarCollapsed">
+  <!-- Header -->
+  <app-header [isSidebarCollapsed]="isSidebarCollapsed" (toggleSidebar)="toggleSidebar()"></app-header>
+  
+  <div class="app-content">
+    <!-- Sidebar -->
+    <div class="sidebar-container" [class.collapsed]="isSidebarCollapsed">
+      <app-sidebar (toggle)="toggleSidebar()"></app-sidebar>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="main-content m-3">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

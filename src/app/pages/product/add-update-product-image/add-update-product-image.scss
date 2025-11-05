@@ -1,0 +1,277 @@
+/* 🌑 CLEAN DARK IMAGE UPLOAD DIALOG */
+
+/* === Dialog Container === */
+::ng-deep .mat-dialog-container {
+  background: #0a0a0a !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9) !important;
+  padding: 0 !important;
+  max-width: 900px !important;
+}
+
+/* === Dialog Header === */
+.dialog-header {
+  background: #f5f5f5;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dialog-title {
+  font-weight: 500;
+  color: #333;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.dialog-title small {
+  color: #999;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+/* === Dialog Body === */
+.dialog-body {
+  background: #1a1a1a;
+  padding: 2rem;
+  color: #e0e0e0;
+  min-height: 300px;
+}
+
+/* === Upload Box === */
+.upload-box {
+  border: 2px dashed #444;
+  border-radius: 8px;
+  background: #252525;
+  text-align: center;
+  padding: 3rem 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.upload-box:hover,
+.upload-box.dragging {
+  border-color: #666;
+  background: #2a2a2a;
+}
+
+.upload-icon {
+  font-size: 3.5rem !important;
+  color: #666 !important;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.upload-box:hover .upload-icon {
+  color: #888 !important;
+}
+
+.upload-box .text {
+  color: #aaa;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* === Preview Grid === */
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* === Preview Item === */
+.preview-item {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #333;
+  background: #252525;
+  transition: all 0.2s ease;
+}
+
+.preview-item:hover {
+  border-color: #555;
+}
+
+.preview-item.primary {
+  border-color: #4caf50;
+  border-width: 3px;
+}
+
+.preview-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* === Primary Badge === */
+.primary-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #4caf50;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* === Remove Button === */
+.remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 3;
+  padding: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.remove-btn mat-icon {
+  font-size: 20px !important;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.remove-btn:hover {
+  background: #c62828;
+  transform: scale(1.1);
+}
+
+/* === Dialog Actions === */
+.dialog-actions {
+  background: #0a0a0a;
+  border-top: 1px solid #333;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* === Buttons === */
+.btn {
+  padding: 0.65rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  background: #333;
+}
+
+.btn-primary {
+  background: #2196f3;
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #1976d2;
+}
+
+.btn-primary:disabled {
+  background: #2a2a2a;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* === Scrollbar === */
+.dialog-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dialog-body::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.dialog-body::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.dialog-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .dialog-body {
+    padding: 1.5rem;
+  }
+  
+  .upload-box {
+    padding: 2rem 1rem;
+  }
+  
+  .preview-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .dialog-header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .dialog-title {
+    font-size: 1rem;
+  }
+  
+  .dialog-body {
+    padding: 1rem;
+  }
+  
+  .upload-box {
+    padding: 2rem 1rem;
+  }
+  
+  .upload-icon {
+    font-size: 2.5rem !important;
+  }
+  
+  .preview-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .dialog-actions {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    flex: 1;
+    min-width: 120px;
+  }
+}

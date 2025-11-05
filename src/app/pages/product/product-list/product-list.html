@@ -1,0 +1,81 @@
+<div>
+    <div class="main-products row align-items-center">
+      <div class="col">
+        <h3>Products</h3>
+      </div>
+      <div class="col text-end">
+        <button class="btn btn-primary" (click)="addeditProduct(null)">Add Product</button>
+      </div>
+    </div>
+    <hr />
+    
+    <!-- Search Bar -->
+    <div class="mt-2 mb-1">
+      <mat-form-field appearance="outline" class="w-100"> 
+        <ng-container matPrefix>
+          <mat-icon *ngIf="!searchBox.value">search</mat-icon>
+          <mat-icon *ngIf="searchBox.value" (click)="searchBox.value=''; onSearch('')" style="cursor:pointer">
+            close
+          </mat-icon>
+        </ng-container>
+    
+        <input 
+          matInput 
+          #searchBox 
+          placeholder="Search"  
+          (keyup.enter)="onSearch(searchBox.value)" 
+        />
+      </mat-form-field>
+    </div>
+
+    <!-- Product List -->
+    <div class="main-products-list p-2">
+      <ng-container *ngIf="productList$ | async as products">
+        
+        <!-- Show list when products exist -->
+        <div class="row" *ngIf="products.length > 0; else noProducts">
+          <div class="col-md-4 p-2" *ngFor="let product of products">
+            <mat-card class="example-card w-100 h-100" appearance="outlined">
+              <mat-card-header class="mb-2">
+                <mat-card-title>{{ product.productName }}</mat-card-title>
+              </mat-card-header>
+              <img
+                mat-card-image
+                [src]="product.productImage"
+                class="img-fluid"
+                (error)="handleImageError($event)"
+                alt="{{ product.productName }}"
+                (click)="getProductDetail(product)"
+              />
+              <mat-card-content>
+                <p>{{ product.productDescription }}</p>
+              </mat-card-content>
+              <mat-card-actions class="gap-2">
+                <button class="btn btn-warning" (click)="addeditProduct(product)">Edit</button>
+                <button class="btn btn-secondary">Delete</button>
+                <button class="btn btn-info" (click)="getProductDetail(product)">Stock</button>
+                <button class="btn btn-primary" (click)="getProductImage(product)">Images</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+    
+        <!-- No products -->
+        <ng-template #noProducts>
+          <div class="text-center">
+            <h5>No Products Found</h5>
+          </div>
+        </ng-template>
+      </ng-container>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-2">
+      <mat-paginator
+        [length]="totalRecords"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[10, 20, 50, 100]"
+        (page)="onPageChange($event)"
+      ></mat-paginator>
+    </div>
+</div>
