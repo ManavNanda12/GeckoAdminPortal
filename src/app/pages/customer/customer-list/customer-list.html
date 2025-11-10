@@ -3,7 +3,7 @@
     <div class="filters d-flex mb-2">
       <h1>Customers</h1>
       <div class="ms-auto">
-        <button class="btn btn-info">Add Customer</button>
+        <button class="btn btn-info" (click)="addEditCustomer(0)">Add Customer</button>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
             <button class="btn btn-danger me-2" aria-label="Delete customer">
               <i class="fa-solid fa-trash"></i>
             </button>
-            <button class="btn btn-warning" aria-label="Edit customer">
+            <button class="btn btn-warning" aria-label="Edit customer" (click)="addEditCustomer(element)">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
           </td>

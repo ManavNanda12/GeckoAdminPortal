@@ -32,8 +32,9 @@ export class ApiUrlHelper {
     SaveProductStock: "product/save-stock-detail"
   }
   Customer = {
-    CustomerList: "customer/get-customer-list",
-    SaveCustomer: "customer/save-customer"
+    CustomerList: "customers/get-customer-list",
+    SaveCustomer: "customers/save-customer",
+    GetCustomerById: "customers/get-customer-by-id/{Id}"
   }
   Order = {
     OrderList: "order/get-order-list"

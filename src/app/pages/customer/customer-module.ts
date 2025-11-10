@@ -11,10 +11,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
+import { AddEditCustomerDialog } from './add-edit-customer-dialog/add-edit-customer-dialog';
 
 @NgModule({
   declarations: [
-    CustomerList
+    CustomerList,
+    AddEditCustomerDialog
   ],
   imports: [
     CommonModule,

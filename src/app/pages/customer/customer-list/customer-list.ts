@@ -3,6 +3,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Common } from '../../../services/common';
 import { ApiUrlHelper } from '../../../common/ApiUrlHelper';
+import { MatDialog } from '@angular/material/dialog';
+import { AddEditCustomerDialog } from '../add-edit-customer-dialog/add-edit-customer-dialog';
 
 @Component({
   selector: 'app-customer-list',
@@ -27,7 +29,8 @@ export class CustomerList implements OnInit {
     private readonly spinner: NgxSpinnerService,
     private readonly toastr: ToastrService,
     private readonly commonService: Common,
-    private readonly api: ApiUrlHelper
+    private readonly api: ApiUrlHelper,
+    private readonly dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -71,6 +74,19 @@ export class CustomerList implements OnInit {
         this.spinner.hide();
       }
     })
+  }
+
+  addEditCustomer(customerData:any){
+   const dialogRef =  this.dialog.open(AddEditCustomerDialog, {
+      data: { customerData },
+      width:'500px',
+      disableClose:true
+    });
+    dialogRef.afterClosed().subscribe((result:any) => {
+      if(result){
+        this.getAllCustomers();
+      }
+    });
   }
 
 }

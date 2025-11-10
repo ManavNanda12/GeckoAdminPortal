@@ -15,3 +15,11 @@ app-root {
 .mat-mdc-paginator .mat-mdc-select {
     text-align: center !important;
 }
+
+mat-error{
+  color:red !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-bottom-align::before{
+  display: none !important;
+}
