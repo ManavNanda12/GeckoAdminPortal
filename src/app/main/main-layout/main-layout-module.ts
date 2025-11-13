@@ -38,6 +38,10 @@ const routes: Routes = [
       {
         path:'orders',
         loadChildren:()=>import('../../pages/orders/orders-module').then(m=>m.OrdersModule)
+      },
+      {
+        path:'contact-us',
+        loadChildren:()=>import('../../pages/contact-us/contact-us-module').then(m=>m.ContactUsModule)
       }
     ]
   }

@@ -1,0 +1,75 @@
+<div class="dialog-header">
+  <h2 mat-dialog-title>Reply to Message</h2>
+  <hr />
+</div>
+
+<form [formGroup]="replyForm" (ngSubmit)="submitReply()">
+  <div class="dialog-content-scroll">
+    <mat-dialog-content>
+      <!-- Customer Info (Read-only fields) -->
+      <div>
+        <mat-form-field class="w-100">
+          <mat-label>Customer Name</mat-label>
+          <input matInput [value]="customerData?.customerName" readonly />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="w-100">
+          <mat-label>Email</mat-label>
+          <input matInput [value]="customerData?.customerEmail" readonly />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="w-100">
+          <mat-label>Subject</mat-label>
+          <input matInput [value]="customerData?.contactSubject" readonly />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="w-100">
+          <mat-label>Customer Message</mat-label>
+          <textarea
+            matInput
+            [value]="customerData?.customerMessage"
+            rows="3"
+            readonly
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- Admin Reply Input -->
+      <div>
+        <mat-form-field class="w-100">
+          <mat-label>Reply Message</mat-label>
+          <textarea
+            matInput
+            formControlName="adminMessage"
+            rows="3"
+            placeholder="Enter your reply..."
+          ></textarea>
+        </mat-form-field>
+        <mat-error
+          *ngIf="
+            submitted && replyForm.get('adminMessage')?.hasError('required')
+          "
+        >
+          Reply message is required.
+        </mat-error>
+      </div>
+    </mat-dialog-content>
+  </div>
+
+  <mat-dialog-actions class="dialog-actions-fixed">
+    <button
+      class="btn btn-danger me-2"
+      type="button"
+      (click)="closeDialog(false)"
+    >
+      Close
+    </button>
+    <button class="btn btn-primary" type="submit" cdkFocusInitial>Send Reply</button>
+  </mat-dialog-actions>
+</form>

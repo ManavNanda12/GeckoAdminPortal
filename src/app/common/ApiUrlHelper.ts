@@ -42,4 +42,8 @@ export class ApiUrlHelper {
   Dashboard = {
     Dashboard: "dashboard/get-dashboard-count"
   }
+  ContactUs = {
+    ContactUsList: "contactus/get-contactus-list",
+    SaveContactUs: "contactus/save-contactus-request"
+  }
 }

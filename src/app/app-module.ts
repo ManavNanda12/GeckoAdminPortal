@@ -11,6 +11,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ToastrModule } from 'ngx-toastr'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationModel } from './common/confirmation-model/confirmation-model';
@@ -73,7 +74,8 @@ export const reducers: ActionReducerMap<AppState> = {
     ReactiveFormsModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([ProductsEffects,CategoryEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25 })
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    NgxIntlTelInputModule
   ],
   providers: [
     Common,
