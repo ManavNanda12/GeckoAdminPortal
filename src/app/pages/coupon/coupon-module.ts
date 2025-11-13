@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ContactUsRoutingModule } from './contact-us-routing-module';
-import { ContactUsList } from './contact-us-list/contact-us-list';
+import { CouponRoutingModule } from './coupon-routing-module';
+import { CouponList } from './coupon-list/coupon-list';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,17 +9,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { ContactUsReplyDialog } from './contact-us-reply-dialog/contact-us-reply-dialog';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
-    ContactUsList,
-    ContactUsReplyDialog
+    CouponList
   ],
   imports: [
     CommonModule,
-    ContactUsRoutingModule,
+    CouponRoutingModule,
     MatTableModule,
     MatDialogModule,
     ReactiveFormsModule,
@@ -29,7 +29,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatInputModule,
     MatPaginatorModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NgxSpinnerModule,
+    ToastrModule
   ]
 })
-export class ContactUsModule { }
+export class CouponModule { }

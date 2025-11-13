@@ -46,4 +46,8 @@ export class ApiUrlHelper {
     ContactUsList: "contactus/get-contactus-list",
     SaveContactUs: "contactus/save-contactus-request"
   }
+  Coupon = {
+    CouponList: "coupon/get-coupon-list",
+    SaveCoupon: "coupon/save-coupon"
+  }
 }

@@ -55,8 +55,16 @@
 
         <!-- Admin Message Column -->
         <ng-container matColumnDef="AdminMessage">
-          <th mat-header-cell *matHeaderCellDef>Admin Message</th>
-          <td mat-cell *matCellDef="let element"> {{element.isReplied ? element.adminMessage : 'Not Replied' }}</td>
+        <th mat-header-cell *matHeaderCellDef>Admin Message</th>
+        <td
+            mat-cell
+            *matCellDef="let element"
+            class="ellipsis-cell"
+            [matTooltip]="element.isReplied ? element.adminMessage : 'Not Replied'"
+            matTooltipPosition="above"
+        >
+            {{ element.isReplied ? element.adminMessage : 'Not Replied' }}
+        </td>
         </ng-container>
 
 
