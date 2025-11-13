@@ -1,5 +1,5 @@
 <div class="dialog-header">
-  <h2 mat-dialog-title>{{customerId > 0 ? 'Edit Customer' : 'Add Customer'}}</h2>
+  <h2 mat-dialog-title>{{customerData?.customerId > 0 ? 'Edit Customer' : 'Add Customer'}}</h2>
   <hr>
 </div>
 <form [formGroup]="customerForm" (ngSubmit)="submitCustomerForm()">
