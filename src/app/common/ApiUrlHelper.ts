@@ -50,4 +50,8 @@ export class ApiUrlHelper {
     CouponList: "coupon/get-coupon-list",
     SaveCoupon: "coupon/save-coupon"
   }
+  SitePolicy = {
+    GetSitePolicies: "site-policy/get-site-policies",
+    SaveSitePolicies: "site-policy/update-policy"
+  }
 }

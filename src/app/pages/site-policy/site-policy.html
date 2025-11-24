@@ -1,0 +1,24 @@
+<mat-tab-group class="custom-tab-group">
+  <mat-tab label="Terms & Conditions" >
+    
+    <div class="row mt-2">
+        <div class="col-12">
+           <angular-editor id="editor1" [placeholder]="'Enter text here...'" [(ngModel)]="termsAndConditions"></angular-editor>
+        </div>
+        <div class="mt-2 text-center">
+            <button class="btn btn-primary submit-btn" (click)="savePolicy(1)">Save</button>
+        </div>
+    </div>
+
+  </mat-tab>
+  <mat-tab label="Privacy Policy"> 
+    <div class="row mt-2">
+        <div class="col-12">
+           <angular-editor id="editor2" [placeholder]="'Enter text here...'" [(ngModel)]="privacyPolicy"></angular-editor>
+        </div>
+        <div class="mt-2 text-center">
+            <button class="btn btn-primary submit-btn" (click)="savePolicy(2)">Save</button>
+        </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

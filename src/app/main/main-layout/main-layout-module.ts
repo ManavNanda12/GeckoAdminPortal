@@ -46,6 +46,10 @@ const routes: Routes = [
       {
         path:'coupon',
         loadChildren:()=>import('../../pages/coupon/coupon-module').then(m=>m.CouponModule)
+      },
+      {
+        path:'site-policy',
+        loadChildren:()=>import('../../pages/site-policy/site-policy-module').then(m=>m.SitePolicyModule)
       }
     ]
   }

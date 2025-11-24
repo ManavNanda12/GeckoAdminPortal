@@ -48,7 +48,7 @@ export const reducers: ActionReducerMap<AppState> = {
   declarations: [
     App,
     ConfirmationModel,
-    Login
+    Login  
   ],
   imports: [
     BrowserModule,

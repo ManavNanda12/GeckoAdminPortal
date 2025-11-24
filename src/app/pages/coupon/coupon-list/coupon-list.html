@@ -2,6 +2,9 @@
   <div class="userlist">
     <div class="filters d-flex mb-2">
       <h1>Coupon List</h1>
+      <div class="ms-auto">
+        <button class="btn btn-info" (click)="addEditCoupon(0)">Add Coupon</button>
+      </div>
     </div>
 
     <!-- Search Bar -->
@@ -60,7 +63,7 @@
             mat-cell
             *matCellDef="let element"
         >
-            {{ element.startDate }}
+            {{ element.startDate | date: 'MMM d, y, h:mm:ss a' }}
         </td>
         </ng-container>
 
@@ -71,7 +74,7 @@
             mat-cell
             *matCellDef="let element"
         >
-            {{ element.endDate }}
+            {{ element.endDate | date: 'MMM d, y, h:mm:ss a' }}
         </td>
         </ng-container>
 
@@ -81,7 +84,7 @@
             mat-cell
             *matCellDef="let element"
         >
-            {{ element.maxUsageCount }}
+            {{ element.maxUsageCount > 0 ? element.maxUsageCount : 0 }}
         </td>
         </ng-container>
 
@@ -91,7 +94,7 @@
             mat-cell
             *matCellDef="let element"
         >
-            {{ element.usageCount }}
+            {{ element.usageCount > 0 ? element.usageCount : 0 }}
         </td>
         </ng-container>
 
@@ -101,7 +104,7 @@
             mat-cell
             *matCellDef="let element"
         >
-            {{ element.maxUsagePerUser }}
+            {{ element.maxUsagePerUser > 0 ? element.maxUsagePerUser : 0 }}
         </td>
         </ng-container>
 
@@ -111,7 +114,7 @@
             mat-cell
             *matCellDef="let element"
         >
-            {{ element.isActive }}
+            {{ element.isActive ? 'Yes' : 'No' }}
         </td>
         </ng-container>
 

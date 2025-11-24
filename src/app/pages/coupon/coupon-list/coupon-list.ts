@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiUrlHelper } from '../../../common/ApiUrlHelper';
 import { Common } from '../../../services/common';
+import { AddEditCouponDialog } from '../add-edit-coupon-dialog/add-edit-coupon-dialog';
 
 @Component({
   selector: 'app-coupon-list',
@@ -75,6 +76,18 @@ export class CouponList {
     })
   }
 
+  addEditCoupon(couponId:number){
+    let dialogref = this.dialog.open(AddEditCouponDialog, {
+      data: { couponId: couponId },
+      width:'700px',
+      maxWidth:'700px'
+    });
+    dialogref.afterClosed().subscribe((result:any) => {
+      if(result){
+        this.getAllCustomers();
+      }
+    });
+  }
 
 
 }

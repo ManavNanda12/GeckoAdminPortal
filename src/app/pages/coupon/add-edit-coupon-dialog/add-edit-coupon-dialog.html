@@ -1,0 +1,129 @@
+<div class="dialog-header">
+  <h2 mat-dialog-title>{{couponData?.couponId > 0 ? 'Edit Coupon' : 'Add Coupon'}}</h2>
+  <hr>
+</div>
+<form [formGroup]="couponForm" (ngSubmit)="submitCouponForm()">
+  <div class="dialog-content-scroll">
+    <mat-dialog-content>
+    <div>
+      <mat-form-field class="w-100">
+        <mat-label>Coupon Name</mat-label>
+        <input matInput formControlName="couponName" />
+      </mat-form-field>
+      <mat-error
+        *ngIf="submitted && couponForm.get('couponName')?.hasError('required')"
+      >
+        Coupon Name is required.
+      </mat-error>
+    </div>
+    <div>
+      <mat-form-field class="w-100">
+        <mat-label>Coupon Code</mat-label>
+        <input matInput formControlName="couponCode" />
+      </mat-form-field>
+      <mat-error
+        *ngIf="submitted && couponForm.get('couponCode')?.hasError('required')"
+      >
+        Coupon Code is required.
+      </mat-error>
+    </div>
+    <div>
+      <mat-form-field class="w-100">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" />
+      </mat-form-field>
+      <mat-error
+        *ngIf="submitted && couponForm.get('description')?.hasError('required')"
+      >
+        Description is required.
+      </mat-error>
+    </div>
+    <div>
+      <mat-form-field class="w-100">
+        <mat-label>Discount Type</mat-label>
+        <mat-select formControlName="discountType" >
+          <mat-option value="Percentage">Percentage</mat-option>
+          <mat-option value="Flat">Fixed</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-error
+        *ngIf="submitted && couponForm.get('discountType')?.hasError('required')"
+      >
+        Discount Type is required.
+      </mat-error>
+    </div>
+    <div>
+      <mat-form-field class="w-100">
+        <mat-label>Discount Value</mat-label>
+        <input matInput formControlName="discountValue" />
+      </mat-form-field>
+      <mat-error
+        *ngIf="submitted && couponForm.get('discountValue')?.hasError('required')"
+      >
+        Discount Value is required.
+      </mat-error>
+    </div>
+   <div>
+   <mat-form-field class="w-100">
+    <mat-label>Choose Start Date</mat-label>
+    <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+    <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-error
+        *ngIf="submitted && couponForm.get('startDate')?.hasError('required')"
+    >
+        Start Date is required.
+    </mat-error>
+</div>
+<div>
+    <mat-form-field class="w-100">
+        <mat-label>Choose End Date</mat-label>
+        <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+    <mat-error
+        *ngIf="submitted && couponForm.get('endDate')?.hasError('required')"
+    >
+        End Date is required.
+    </mat-error>
+</div>
+    <div>
+        <mat-form-field class="w-100">
+            <mat-label>Max Usage Count</mat-label>
+            <input matInput formControlName="maxUsageCount" />
+        </mat-form-field>
+        <mat-error
+            *ngIf="submitted && couponForm.get('maxUsageCount')?.hasError('required')"
+        >
+            Max Usage Count is required.
+        </mat-error>
+    </div>
+    <div>
+        <mat-form-field class="w-100">
+            <mat-label>Max Usage Per User</mat-label>
+            <input matInput formControlName="maxUsagePerUser" />
+        </mat-form-field>
+        <mat-error
+            *ngIf="submitted && couponForm.get('maxUsagePerUser')?.hasError('required')"
+        >
+            Max Usage Per User is required.
+        </mat-error>
+    </div>
+
+    </mat-dialog-content>
+  </div>
+  <mat-dialog-actions class="dialog-actions-fixed">
+    <button
+      class="btn btn-danger me-2"
+      type="button"
+      (click)="closeDialog(false)"
+    >
+      Close
+    </button>
+    <button class="btn btn-primary" type="submit" cdkFocusInitial>Save</button>
+  </mat-dialog-actions>
+</form>
