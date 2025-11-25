@@ -8,19 +8,19 @@
           <mat-form-field class="w-100">
             <mat-label>Product Name</mat-label>
             <input matInput formControlName="productName">
-            <mat-error *ngIf="submitted && productForm.get('productName')?.hasError('required')">
-              Product Name is required.
-            </mat-error>
           </mat-form-field>
+          <mat-error *ngIf="submitted && productForm.get('productName')?.hasError('required')">
+            Product Name is required.
+          </mat-error>
       </div>
       <div class="mb-2">
         <mat-form-field class="w-100">
           <mat-label>Product Description</mat-label>
           <textarea matInput formControlName="productDescription"></textarea>
-          <mat-error *ngIf="submitted && productForm.get('productDescription')?.hasError('required')">
-            Product Description is required.
-          </mat-error>
         </mat-form-field>
+        <mat-error *ngIf="submitted && productForm.get('productDescription')?.hasError('required')">
+          Product Description is required.
+        </mat-error>
     </div>
     <div class="mb-2">
         <mat-form-field class="w-100">
@@ -30,28 +30,28 @@
                     {{ category.categoryName }}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="submitted && productForm.get('categoryId')?.hasError('required')">
-                Category is required.
-            </mat-error>
-        </mat-form-field>
+          </mat-form-field>
+          <mat-error *ngIf="submitted && productForm.get('categoryId')?.hasError('required')">
+              Category is required.
+          </mat-error>
     </div>
     <div class="mb-2">
         <mat-form-field class="w-100">
             <mat-label>Price</mat-label>
             <input matInput formControlName="price"/>
-            <mat-error *ngIf="submitted && productForm.get('price')?.hasError('required')">
-              Price is required.
-            </mat-error>
           </mat-form-field>
+          <mat-error *ngIf="submitted && productForm.get('price')?.hasError('required')">
+            Price is required.
+          </mat-error>
     </div>
     <div class="mb-2">
         <mat-form-field class="w-100">
             <mat-label>SKU</mat-label>
             <input matInput formControlName="sku"/>
-            <mat-error *ngIf="submitted && productForm.get('sku')?.hasError('required')">
-              SKU is required.
-            </mat-error>
           </mat-form-field>
+          <mat-error *ngIf="submitted && productForm.get('sku')?.hasError('required')">
+            SKU is required.
+          </mat-error>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
