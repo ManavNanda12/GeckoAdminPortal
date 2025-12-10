@@ -3,6 +3,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Common } from '../../../services/common';
 import { ApiUrlHelper } from '../../../common/ApiUrlHelper';
+import { OrderDetail } from '../order-detail/order-detail';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-order-list',
@@ -29,7 +31,8 @@ export class OrderList {
       private readonly spinner: NgxSpinnerService,
       private readonly toastr: ToastrService,
       private readonly commonService: Common,
-      private readonly api: ApiUrlHelper
+      private readonly api: ApiUrlHelper,
+      private readonly dialog: MatDialog
     ) {}
   
     ngOnInit(): void {
@@ -72,6 +75,15 @@ export class OrderList {
           this.spinner.hide();
         }
       })
+    }
+
+    viewOrder(orderId:number){
+      this.dialog.open(OrderDetail, {
+        data: { orderId: orderId },
+        maxWidth:'800px',
+        width:'800px',
+        disableClose:true
+      });
     }
   
 

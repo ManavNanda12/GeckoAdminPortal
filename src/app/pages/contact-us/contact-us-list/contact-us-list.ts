@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiUrlHelper } from '../../../common/ApiUrlHelper';
 import { Common } from '../../../services/common';
 import { ContactUsReplyDialog } from '../contact-us-reply-dialog/contact-us-reply-dialog';
+import { ConfirmationModel } from '../../../common/confirmation-model/confirmation-model';
 
 @Component({
   selector: 'app-contact-us-list',
@@ -64,7 +65,6 @@ export class ContactUsList {
           this.contactUsList = response?.data;
           this.dataSource = this.contactUsList;
           this.totalRecords = response?.data[0]?.totalRecords;
-          this.toastr.success(response?.message);
         }
       },
       error:(error:any) =>{
@@ -89,5 +89,41 @@ export class ContactUsList {
       }
     })
   }
+
+   deleteContactUsRequest(customerName:string,contactUsId:number){
+        let api = this.api.ContactUs.DeleteContactUsRequest.replace('{Id}',contactUsId.toString());
+        this.dialog.open(ConfirmationModel,{
+          data:{
+            message:`Are you sure you want to delete ${customerName}`,
+            title:'Delete Contact Us Request'
+          },
+          autoFocus:false,
+          width:'400px',
+          disableClose:true
+        }).afterClosed().subscribe({
+          next:(response)=>{
+            if(response){
+              this.spinner.show();
+              this.commonService.deleteData(api).subscribe({
+                next:(response:any)=>{
+                  if(response.success){
+                    this.toastr.success(response?.message);
+                  }
+                  else{
+                    this.toastr.error(response?.message);
+                  }
+                },
+                error:(error:any)=>{
+                  this.toastr.error(error?.error?.message);
+                },
+                complete:()=>{
+                  this.getAllCustomers();
+                  this.spinner.hide();
+                }
+              })
+            }
+          }
+        })
+      }
 
 }

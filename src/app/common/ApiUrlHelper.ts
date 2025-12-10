@@ -34,17 +34,20 @@ export class ApiUrlHelper {
   Customer = {
     CustomerList: "customers/get-customer-list",
     SaveCustomer: "customers/save-customer",
-    GetCustomerById: "customers/get-customer-by-id/{Id}"
+    GetCustomerById: "customers/get-customer-by-id/{Id}",
+    DeleteCustomer: "customers/delete-customer/{Id}"
   }
   Order = {
-    OrderList: "order/get-order-list"
+    OrderList: "order/get-order-list",
+    GetOrderDetails:'order/get-order-detail/{orderId}'
   }
   Dashboard = {
     Dashboard: "dashboard/get-dashboard-count"
   }
   ContactUs = {
     ContactUsList: "contactus/get-contactus-list",
-    SaveContactUs: "contactus/save-contactus-request"
+    SaveContactUs: "contactus/save-contactus-request",
+    DeleteContactUsRequest: "contactus/delete-contactus-request/{Id}"
   }
   Coupon = {
     CouponList: "coupon/get-coupon-list",

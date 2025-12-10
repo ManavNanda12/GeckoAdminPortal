@@ -1,24 +1,111 @@
 <mat-tab-group class="custom-tab-group">
-  <mat-tab label="Terms & Conditions" >
-    
+  <mat-tab label="Terms & Conditions">
     <div class="row mt-2">
-        <div class="col-12">
-           <angular-editor id="editor1" [placeholder]="'Enter text here...'" [(ngModel)]="termsAndConditions"></angular-editor>
-        </div>
-        <div class="mt-2 text-center">
-            <button class="btn btn-primary submit-btn" (click)="savePolicy(1)">Save</button>
-        </div>
+      <div class="col-12">
+        <angular-editor
+          id="editor1"
+          [placeholder]="'Enter text here...'"
+          [(ngModel)]="termsAndConditions"
+        ></angular-editor>
+      </div>
+      <div class="mt-2 text-center">
+        <button
+          class="btn btn-primary submit-btn"
+          (click)="savePolicy(1,termsAndConditions)"
+        >
+          Save
+        </button>
+      </div>
     </div>
-
   </mat-tab>
-  <mat-tab label="Privacy Policy"> 
+  <mat-tab label="Privacy Policy">
+    <div class="row mt-2 gap-3">
+      <div class="col-12">
+        <angular-editor
+          id="editor2"
+          [placeholder]="'Enter text here...'"
+          [(ngModel)]="privacyPolicy"
+        ></angular-editor>
+      </div>
+      <div class="mt-2 text-center">
+        <button
+          class="btn btn-primary submit-btn"
+          (click)="savePolicy(2,privacyPolicy)"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Social Media Links">
     <div class="row mt-2">
-        <div class="col-12">
-           <angular-editor id="editor2" [placeholder]="'Enter text here...'" [(ngModel)]="privacyPolicy"></angular-editor>
-        </div>
-        <div class="mt-2 text-center">
-            <button class="btn btn-primary submit-btn" (click)="savePolicy(2)">Save</button>
-        </div>
+      <!-- Instagram -->
+      <div class="col-12 p-2 d-flex align-items-center gap-2">
+        <i class="fa-brands fa-instagram fa-lg text-danger"></i>
+        <input
+          type="text"
+          [(ngModel)]="instagramLink"
+          class="form-control"
+          placeholder="Instagram Link"
+        />
+        <button
+          class="btn btn-primary btn-icon"
+          (click)="savePolicy(5, instagramLink)"
+        >
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+
+      <!-- Facebook -->
+      <div class="col-12 p-2 d-flex align-items-center gap-2">
+        <i class="fa-brands fa-facebook fa-lg text-primary"></i>
+        <input
+          type="text"
+          [(ngModel)]="facebookLink"
+          class="form-control"
+          placeholder="Facebook Link"
+        />
+        <button
+          class="btn btn-primary btn-icon"
+          (click)="savePolicy(3, facebookLink)"
+        >
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+
+      <!-- Twitter / X -->
+      <div class="col-12 p-2 d-flex align-items-center gap-2">
+        <i class="fa-brands fa-x-twitter fa-lg text-dark"></i>
+        <input
+          type="text"
+          [(ngModel)]="twitterLink"
+          class="form-control"
+          placeholder="Twitter/X Link"
+        />
+        <button
+          class="btn btn-primary btn-icon"
+          (click)="savePolicy(4, twitterLink)"
+        >
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+
+      <!-- YouTube -->
+      <div class="col-12 p-2 d-flex align-items-center gap-2">
+        <i class="fa-brands fa-youtube fa-lg text-danger"></i>
+        <input
+          type="text"
+          [(ngModel)]="youtubeLink"
+          class="form-control"
+          placeholder="YouTube Link"
+        />
+        <button
+          class="btn btn-primary btn-icon"
+          (click)="savePolicy(6, youtubeLink)"
+        >
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
     </div>
   </mat-tab>
 </mat-tab-group>

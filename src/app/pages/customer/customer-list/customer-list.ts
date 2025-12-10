@@ -5,6 +5,7 @@ import { Common } from '../../../services/common';
 import { ApiUrlHelper } from '../../../common/ApiUrlHelper';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditCustomerDialog } from '../add-edit-customer-dialog/add-edit-customer-dialog';
+import { ConfirmationModel } from '../../../common/confirmation-model/confirmation-model';
 
 @Component({
   selector: 'app-customer-list',
@@ -88,5 +89,38 @@ export class CustomerList implements OnInit {
       }
     });
   }
+
+  deleteUser(customerName:string,customerId:number){
+      let api = this.api.Customer.DeleteCustomer.replace('{Id}',customerId.toString());
+      this.dialog.open(ConfirmationModel,{
+        data:{
+          message:`Are you sure you want to delete ${customerName}`,
+          title:'Delete Customer'
+        },
+        autoFocus:false,
+        width:'400px',
+        disableClose:true
+      }).afterClosed().subscribe({
+        next:(response)=>{
+          if(response){
+            this.spinner.show();
+            this.commonService.deleteData(api).subscribe({
+              next:(response:any)=>{
+                if(response.success){
+                  this.toastr.success(response?.message);
+                }
+              },
+              error:(error:any)=>{
+                this.toastr.error(error?.error?.message);
+              },
+              complete:()=>{
+                this.getAllCustomers();
+                this.spinner.hide();
+              }
+            })
+          }
+        }
+      })
+    }
 
 }

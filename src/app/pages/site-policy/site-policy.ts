@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Common } from '../../services/common';
 import { ApiUrlHelper } from '../../common/ApiUrlHelper';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-site-policy',
@@ -16,6 +17,10 @@ export class SitePolicy implements OnInit {
   // Common Properties
   termsAndConditions:string | any = '';
   privacyPolicy:string | any = '';
+  instagramLink:string | any = '';
+  facebookLink:string | any = '';
+  twitterLink:string | any = '';
+  youtubeLink:string | any = '';
   editorConfig: AngularEditorConfig = {
     editable: true,
       spellcheck: true,
@@ -81,6 +86,10 @@ export class SitePolicy implements OnInit {
         if(response?.success){
           this.termsAndConditions = response?.data[0]?.policyDescription;
           this.privacyPolicy = response?.data[1]?.policyDescription;
+          this.facebookLink = response?.data[2]?.policyDescription;
+          this.twitterLink = response?.data[3]?.policyDescription;
+          this.instagramLink = response?.data[4]?.policyDescription;
+          this.youtubeLink = response?.data[5]?.policyDescription;
         }
       },
       error:(error:any) =>{
@@ -92,11 +101,11 @@ export class SitePolicy implements OnInit {
     })
   }
 
-  savePolicy(policyType:number){
+  savePolicy(policyType:number,policyDescription:string){
     this.spinner.show();
     let requestedModel = {
-      sitePolicyId : policyType == 1 ? 1 : 2,
-      policyDescription: policyType == 1 ? this.termsAndConditions : this.privacyPolicy
+      sitePolicyId : policyType,
+      policyDescription: policyDescription
     }
     this.commonService.postData(this.api.SitePolicy.SaveSitePolicies,requestedModel).subscribe({
       next:(response:any) =>{

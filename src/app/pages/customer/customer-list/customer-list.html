@@ -62,7 +62,7 @@
         <ng-container matColumnDef="Actions">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let element">
-            <button class="btn btn-danger me-2" aria-label="Delete customer">
+            <button class="btn btn-danger me-2" aria-label="Delete customer" (click)="deleteUser(element.firstName,element.customerId)">
               <i class="fa-solid fa-trash"></i>
             </button>
             <button class="btn btn-warning" aria-label="Edit customer" (click)="addEditCustomer(element)">

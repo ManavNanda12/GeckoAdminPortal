@@ -72,7 +72,7 @@
         <ng-container matColumnDef="Actions">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let element">
-            <button class="btn btn-danger me-2" aria-label="Delete request">
+            <button class="btn btn-danger me-2" aria-label="Delete request" (click)="deleteContactUsRequest(element.customerName,element.contactUsId)">
               <i class="fa-solid fa-trash"></i>
             </button>
             <button class="btn btn-warning" aria-label="Reply Message" *ngIf="!element.isReplied" (click)="replyToCustomer(element)">
