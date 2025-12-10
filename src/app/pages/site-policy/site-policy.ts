@@ -4,7 +4,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Common } from '../../services/common';
 import { ApiUrlHelper } from '../../common/ApiUrlHelper';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-site-policy',
