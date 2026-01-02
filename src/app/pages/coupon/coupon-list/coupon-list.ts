@@ -80,7 +80,7 @@ export class CouponList {
   addEditCoupon(couponId:number){
     let dialogref = this.dialog.open(AddEditCouponDialog, {
       data: { couponId: couponId },
-      width:'00px',
+      width:'600px',
       maxWidth:'700px',
     });
     dialogref.afterClosed().subscribe((result:any) => {
