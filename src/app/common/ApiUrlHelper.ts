@@ -51,7 +51,8 @@ export class ApiUrlHelper {
   }
   Coupon = {
     CouponList: "coupon/get-coupon-list",
-    SaveCoupon: "coupon/save-coupon"
+    SaveCoupon: "coupon/save-coupon",
+    CouponDetails: "coupon/get-coupon-details/{CouponId}"
   }
   SitePolicy = {
     GetSitePolicies: "site-policy/get-site-policies",

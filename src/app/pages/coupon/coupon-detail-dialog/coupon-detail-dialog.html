@@ -1,0 +1,66 @@
+<!-- Coupon Details Dialog -->
+<div class="coupon-dialog">
+
+  <!-- Header -->
+  <div class="dialog-header">
+    <h4>Coupon Details</h4>
+    <span class="close-icon" (click)="closeDialog()">&times;</span>
+  </div>
+
+  <!-- Coupon Card -->
+  <div class="coupon-card">
+    <div class="coupon-header">
+      <div>
+        <h3>{{couponDetails[0].couponCode}}</h3>
+        <span class="badge">{{couponDetails[0].discountType}}</span>
+      </div>
+      <div class="discount">{{couponDetails[0].discountValue}}{{couponDetails[0].discountType == 'Percentage'?'%':'$'}} OFF</div>
+    </div>
+
+    <div class="coupon-body">
+      <div class="row">
+        <div class="col">
+          <label>Coupon Name</label>
+          <p>{{couponDetails[0].couponName}}</p>
+        </div>
+        <div class="col">
+          <label>Validity</label>
+          <p>{{couponDetails[0].startDate | date:'MMM d, y, h:mm:ss a'}} – {{couponDetails[0].endDate | date:'MMM d, y, h:mm:ss a'}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>Usage Per User</label>
+          <p>{{couponDetails[0].maxUsagePerUser}} Times</p>
+        </div>
+        <div class="col">
+          <label>Total Used</label>
+          <p>{{couponDetails[0].couponUsedTime}} Time</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customers Section -->
+  <div class="customer-section">
+    <h5>Customers Using This Coupon</h5>
+
+    <div class="customer-list" *ngFor="let customer of couponDetails">
+
+      <!-- Customer Item -->
+      <div class="customer-item">
+        <div class="avatar">M</div>
+        <div class="customer-info">
+          <div class="name">{{customer.firstName}} {{customer.LastName}}</div>
+          <div class="email">{{customer.email}}</div>
+        </div>
+        <div class="usage-info">
+          <span class="usage-count">{{customer.usageCount}} / {{customer.maxUsagePerUser}}</span>
+          <span class="usage-label active">Active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

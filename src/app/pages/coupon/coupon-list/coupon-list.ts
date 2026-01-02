@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiUrlHelper } from '../../../common/ApiUrlHelper';
 import { Common } from '../../../services/common';
 import { AddEditCouponDialog } from '../add-edit-coupon-dialog/add-edit-coupon-dialog';
+import { CouponDetailDialog } from '../coupon-detail-dialog/coupon-detail-dialog';
 
 @Component({
   selector: 'app-coupon-list',
@@ -79,8 +80,21 @@ export class CouponList {
   addEditCoupon(couponId:number){
     let dialogref = this.dialog.open(AddEditCouponDialog, {
       data: { couponId: couponId },
-      width:'700px',
-      maxWidth:'700px'
+      width:'00px',
+      maxWidth:'700px',
+    });
+    dialogref.afterClosed().subscribe((result:any) => {
+      if(result){
+        this.getAllCustomers();
+      }
+    });
+  }
+
+   couponDetail(couponId:number){
+    let dialogref = this.dialog.open(CouponDetailDialog, {
+      data: { couponId: couponId },
+      width:'800px',
+      maxWidth:'800px'
     });
     dialogref.afterClosed().subscribe((result:any) => {
       if(result){

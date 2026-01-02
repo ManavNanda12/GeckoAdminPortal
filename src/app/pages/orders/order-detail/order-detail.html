@@ -1,13 +1,13 @@
 <div class="order-detail-container">
-    <div class="mb-2 row">
-        <div>
-            <h2 class="title">Order Details</h2>
-        </div>
-        <!-- <div>
+  <div class="mb-2 row">
+    <div>
+      <h2 class="title">Order Details</h2>
+    </div>
+    <!-- <div>
             <button class="close-btn" (click)="dialogRef.close()">Close</button>
         </div> -->
-        <hr>
-    </div>
+    <hr />
+  </div>
 
   <div *ngIf="!orderDetails" class="loading">
     <p>Loading order details...</p>
@@ -15,10 +15,7 @@
 
   <div *ngIf="orderDetails" class="order-detail-content">
     <div class="product-list">
-      <div
-        class="product-card"
-        *ngFor="let item of orderDetails"
-      >
+      <div class="product-card" *ngFor="let item of orderDetails">
         <div class="image-wrapper">
           <img
             [src]="item.imageUrl"
@@ -34,19 +31,23 @@
           </div>
           <p class="price">₹{{ item.unitPrice | number: '1.2-2' }}</p>
           <p class="qty">Qty: {{ item.quantity }}</p>
-          <p class="subtotal">Subtotal: ₹{{ item.lineTotal | number: '1.2-2' }}</p>
+          <p class="subtotal">
+            Subtotal: ₹{{ item.lineTotal | number: '1.2-2' }}
+          </p>
         </div>
       </div>
     </div>
 
-    <div class="order-summary">
+      <div class="order-summary">
       <p><strong>Payment Method:</strong> {{ orderDetails[0].paymentMethod }}</p>
       <p><strong>Tax:</strong> ₹{{ orderDetails[0].taxAmount | number:'1.2-2' }}</p>
       <p><strong>Shipping:</strong> ₹{{ orderDetails[0].shippingAmount | number:'1.2-2' }}</p>
-      <p><strong>Discount:</strong> ₹{{ orderDetails[0].discountAmount | number:'1.2-2' }}</p>
-      <p class="total"><strong>Total:</strong> ₹{{ orderDetails[0].total | number:'1.2-2' }}</p>
+      <p><strong>Discount:</strong> ₹{{ orderDetails[0].discountAmount | number:'1.2-2' }}  <span *ngIf="orderDetails[0]?.couponCode" class="coupon-box">
+            (Coupon: {{ orderDetails[0]?.couponCode }})
+      </span></p>
+      <p><strong>Total Product Cost:</strong> ₹{{ orderDetails[0].total | number:'1.2-2' }}</p>
+      <p class="total"><strong>Grand Total:</strong> ₹{{ orderDetails[0].total  + (orderDetails[0].taxAmount - orderDetails[0].discountAmount )| number:'1.2-2' }}</p>
     </div>
-
     <div class="footer">
       <button class="close-btn" (click)="dialogRef.close()">Close</button>
     </div>

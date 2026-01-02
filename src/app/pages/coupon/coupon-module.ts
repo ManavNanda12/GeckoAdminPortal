@@ -16,12 +16,14 @@ import { AddEditCouponDialog } from './add-edit-coupon-dialog/add-edit-coupon-di
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CouponDetailDialog } from './coupon-detail-dialog/coupon-detail-dialog';
 
 
 @NgModule({
   declarations: [
     CouponList,
-    AddEditCouponDialog
+    AddEditCouponDialog,
+    CouponDetailDialog
   ],
   imports: [
     CommonModule,
