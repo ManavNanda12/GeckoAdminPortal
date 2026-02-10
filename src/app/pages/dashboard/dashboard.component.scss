@@ -4,11 +4,12 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   animation: fadeIn 0.6s ease-in-out;
 
   .welcome-section {
     text-align: center;
+    align-self: center;
 
     .brand-text {
       color: #1976d2;
@@ -33,6 +34,7 @@
   .dashboard-cards {
     width: 100%;
     max-width: 1200px;
+    align-self: center;
 
     .dashboard-card {
       min-width: 320px;
@@ -60,6 +62,142 @@
       }
     }
   }
+
+  .charts-section {
+    width: 100%;
+    max-width: 1200px;
+    align-self: center;
+
+    .chart-card {
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      background: #ffffff;
+      overflow: visible;
+
+      mat-card-header {
+        padding-bottom: 1rem;
+
+        .header-content {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          gap: 1rem;
+
+          mat-card-title {
+            margin: 0;
+            flex: 1;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+          }
+
+          // Styled select dropdown
+          mat-select {
+            min-width: 150px;
+            max-width: 180px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 10px;
+            border: 1.5px solid #e0e0e0;
+            padding: 10px 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+            &:hover {
+              border-color: #1976d2;
+              box-shadow: 0 4px 8px rgba(25, 118, 210, 0.15);
+              background: #ffffff;
+            }
+
+            &.mat-focused {
+              border-color: #1976d2;
+              box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+            }
+          }
+        }
+      }
+
+      mat-card-content {
+        padding-top: 0.5rem;
+      }
+    }
+  }
+}
+
+// Enhanced global styles for Material select
+::ng-deep {
+  // Select trigger styling
+  .mat-select-trigger {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .mat-select-value {
+    color: #333 !important;
+    font-weight: 500 !important;
+  }
+
+  .mat-select-arrow-wrapper {
+    transform: translateY(0) !important;
+  }
+
+  .mat-select-arrow {
+    color: #1976d2 !important;
+    border-left: 5px solid transparent !important;
+    border-right: 5px solid transparent !important;
+    border-top: 5px solid !important;
+  }
+
+  // Dropdown panel styling
+  .mat-select-panel {
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+    margin-top: 12px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    max-height: 280px;
+
+    .mat-option {
+      font-size: 0.875rem;
+      padding: 14px 20px;
+      transition: all 0.2s ease;
+      color: #555;
+      font-weight: 500;
+
+      &:hover:not(.mat-selected) {
+        background-color: #e3f2fd !important;
+        color: #1976d2;
+      }
+
+      &.mat-selected {
+        background-color: #1976d2 !important;
+        color: white !important;
+        font-weight: 600;
+
+        &:hover {
+          background-color: #1565c0 !important;
+        }
+      }
+
+      &.mat-active {
+        background-color: #e3f2fd !important;
+        color: #1976d2;
+      }
+    }
+  }
+
+  // Remove Material default styles that conflict
+  .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+    background-color: #1976d2 !important;
+  }
+
+  // Overlay backdrop
+  .cdk-overlay-backdrop {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }
 
 @keyframes fadeIn {
@@ -70,5 +208,27 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .dashboard-container {
+    .charts-section {
+      .chart-card {
+        mat-card-header {
+          .header-content {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+
+            mat-select {
+              width: 100%;
+              max-width: 100%;
+            }
+          }
+        }
+      }
+    }
   }
 }

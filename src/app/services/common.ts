@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { catchError, map, Observable, throwError } from 'rxjs';
 
-export interface responseModel{
-  success:boolean,
-  message:string,
-  data:any
+export interface responseModel {
+  success: boolean,
+  message: string,
+  data: any
 }
 
 @Injectable({
@@ -16,7 +17,7 @@ export class Common {
 
   baseUrl: string = "https://localhost:44300/api/";
 
-  constructor(private readonly http: HttpClient , private spinner:NgxSpinnerService) { }
+  constructor(private readonly http: HttpClient, private spinner: NgxSpinnerService, private router: Router) { }
 
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem("jwtToken");
@@ -33,6 +34,16 @@ export class Common {
     return headers;
   }
 
+  // Handle 401 Unauthorized errors (token expired)
+  private handleAuthError(error: any): Observable<never> {
+    if (error.status === 401) {
+      localStorage.clear();
+      this.router.navigate(['/login']);
+    }
+    this.spinner.hide();
+    return throwError(() => error);
+  }
+
   // ✅ Common Methods with JWT Headers
   getData(url: string): Observable<responseModel> {
     return this.http.get(this.baseUrl + url, { headers: this.getHeaders() }).pipe(
@@ -43,10 +54,7 @@ export class Common {
           data: response.data
         };
       }),
-      catchError((error: any) => {
-        this.spinner.hide();
-        return throwError(() => error);
-      })
+      catchError((error: any) => this.handleAuthError(error))
     );
   }
 
@@ -59,10 +67,7 @@ export class Common {
           data: response.data
         };
       }),
-      catchError((error: any) => {
-        this.spinner.hide();
-        return throwError(() => error);
-      })
+      catchError((error: any) => this.handleAuthError(error))
     );
   }
 
@@ -75,10 +80,7 @@ export class Common {
           data: response.data
         };
       }),
-      catchError((error: any) => {
-        this.spinner.hide();
-        return throwError(() => error);
-      })
+      catchError((error: any) => this.handleAuthError(error))
     );
   }
 
@@ -91,16 +93,13 @@ export class Common {
           data: response.data
         };
       }),
-      catchError((error: any) => {
-        this.spinner.hide();
-        return throwError(() => error);
-      })
+      catchError((error: any) => this.handleAuthError(error))
     );
   }
 
   postFormData(url: string, formData: FormData): Observable<responseModel> {
     const token = localStorage.getItem("jwtToken");
-    
+
     let headers = new HttpHeaders({
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
@@ -118,10 +117,7 @@ export class Common {
           data: response.data
         };
       }),
-      catchError((error: any) => {
-        this.spinner.hide();
-        return throwError(() => error);
-      })
+      catchError((error: any) => this.handleAuthError(error))
     );
-}
+  }
 }

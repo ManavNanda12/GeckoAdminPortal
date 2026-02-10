@@ -1,5 +1,6 @@
 /* Ensure full height */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
@@ -13,14 +14,15 @@ app-root {
 
 
 .mat-mdc-paginator .mat-mdc-select {
-    text-align: center !important;
+  text-align: center !important;
 }
 
-mat-error{
-  color:red !important;
+mat-error {
+  color: red !important;
 }
 
-.mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-bottom-align::before{
+.mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-bottom-align::before {
   display: none !important;
 }
 
@@ -43,5 +45,19 @@ mat-error{
   --ae-picker-icon-bg-color: rgb(34, 41, 122);
   --ae-picker-option-bg-color: rgba(221, 221, 84, 0.76);
   --ae-picker-option-active-bg-color: rgba(237, 237, 62, 0.9);
-  --ae-picker-option-focused-bg-color: rgb(255, 255, 0);  
+  --ae-picker-option-focused-bg-color: rgb(255, 255, 0);
+}
+
+/* Fix for Material CDK overlays (dropdowns, date pickers) appearing behind dialogs */
+.cdk-overlay-container {
+  z-index: 9999 !important;
+}
+
+.cdk-overlay-pane {
+  z-index: 9999 !important;
+}
+
+/* Ensure dialog backdrop doesn't cover overlays */
+.cdk-overlay-backdrop {
+  z-index: 1000 !important;
 }

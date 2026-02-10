@@ -42,7 +42,9 @@ export class ApiUrlHelper {
     GetOrderDetails:'order/get-order-detail/{orderId}'
   }
   Dashboard = {
-    Dashboard: "dashboard/get-dashboard-count"
+    Dashboard: "dashboard/get-dashboard-count",
+    GetMonthlyStats: "dashboard/get-monthly-stats/{Year}",
+    GetMostOrderedStats: "dashboard/get-most-ordered-stats/{Filter}"
   }
   ContactUs = {
     ContactUsList: "contactus/get-contactus-list",

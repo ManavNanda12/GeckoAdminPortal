@@ -9,7 +9,62 @@
     </p>
   </div>
 
-  <div class="dashboard-cards row g-4 mt-5 animate__animated animate__fadeInUp">
+<!-- Charts Section -->
+<div class="row g-4 mt-4 animate__animated animate__fadeInUp charts-section">
+  <!-- Monthly Sales Bar Chart -->
+  <div class="col-md-6">
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <div class="header-content">
+          <mat-card-title>Monthly Sales</mat-card-title>
+          <mat-select 
+            class="year-select"
+            [value]="selectedYear"
+            (selectionChange)="getMonthylySalesCount($event.value)"
+            placeholder="Select Year">
+            <mat-option *ngFor="let year of getLastTenYears()" [value]="year">
+              {{ year }}
+            </mat-option>
+          </mat-select>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <ag-charts 
+          style="height: 340px; width: 100%; display: block;" 
+          [options]="monthlySalesChartOptions">
+        </ag-charts>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Most Ordered Products Line Chart -->
+  <div class="col-md-6">
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <div class="header-content">
+          <mat-card-title>Most Ordered Products</mat-card-title>
+          <mat-select 
+            class="period-select"
+            [value]="selectedPeriod"
+            (selectionChange)="getMostOrderedProductStats($event.value)"
+            placeholder="Select Period">
+            <mat-option [value]="0">Today</mat-option>
+            <mat-option [value]="1">This Month</mat-option>
+            <mat-option [value]="2">This Year</mat-option>
+          </mat-select>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <ag-charts 
+          style="height: 340px; width: 100%; display: block;" 
+          [options]="mostOrderedProductsChartOptions">
+        </ag-charts>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+  <div class="dashboard-cards row g-4 mt-4 animate__animated animate__fadeInUp">
 
     <!-- Products -->
     <div class="col-md-4" (click)="redirectToProducts()">
@@ -106,4 +161,5 @@
 
     </div>
   </div>
+
 </div>

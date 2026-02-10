@@ -5,7 +5,8 @@ import { DashboardComponent } from './dashboard.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-
+import { AgCharts, AgChartsModule } from 'ag-charts-angular';
+import { MatSelectModule } from '@angular/material/select';
 const routes: Routes = [
   {
     path: '',
@@ -22,7 +23,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MatIconModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    AgChartsModule,
+    AgCharts,
+    MatSelectModule
   ]
 })
 export class DashboardModule { }

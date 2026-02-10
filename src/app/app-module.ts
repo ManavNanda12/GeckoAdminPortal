@@ -32,6 +32,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from './store/effects/product.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CategoryEffects } from './store/effects/category.effect';
+import { ModuleRegistry } from 'ag-charts-community';
+import { AllCommunityModule } from 'ag-charts-community';
 
 export interface AppState {
   products: productState;
@@ -42,6 +44,7 @@ export const reducers: ActionReducerMap<AppState> = {
   products: productReducer,
   category: categoryReducer
 };
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 
 @NgModule({
