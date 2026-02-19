@@ -15,7 +15,7 @@ export interface responseModel {
 })
 export class Common {
 
-  baseUrl: string = "https://localhost:44300/api/";
+  baseUrl: string = "https://geckoapi-manav-eqcmaahyfdcxdhcd.centralindia-01.azurewebsites.net/api/";
 
   constructor(private readonly http: HttpClient, private spinner: NgxSpinnerService, private router: Router) { }
 
