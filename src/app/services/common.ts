@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { catchError, map, Observable, throwError } from 'rxjs';
+import { environment } from '../../environments/environment.development';
 
 export interface responseModel {
   success: boolean,
@@ -15,7 +16,7 @@ export interface responseModel {
 })
 export class Common {
 
-  baseUrl: string = "https://geckoapi-manav-eqcmaahyfdcxdhcd.centralindia-01.azurewebsites.net/api/";
+  baseUrl: string = environment.apiUrl;
 
   constructor(private readonly http: HttpClient, private spinner: NgxSpinnerService, private router: Router) { }
 
