@@ -47,7 +47,13 @@
         <!-- OrderStatus Column -->
         <ng-container matColumnDef="OrderStatus">
           <th mat-header-cell *matHeaderCellDef>OrderStatus</th>
-          <td mat-cell *matCellDef="let element">{{ element.orderStatus }}</td>
+          <td mat-cell *matCellDef="let element">{{ getOrderStatus(element.orderStatus) }}</td>
+        </ng-container>
+
+        <!-- PaymentStatus Column -->
+        <ng-container matColumnDef="PaymentStatus">
+          <th mat-header-cell *matHeaderCellDef>PaymentStatus</th>
+          <td mat-cell *matCellDef="let element">{{ getPaymentStatus(element.paymentStatus) }}</td>
         </ng-container>
 
         <!-- BillingAddress Column -->

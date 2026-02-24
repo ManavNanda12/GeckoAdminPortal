@@ -93,8 +93,8 @@ export class CouponList {
    couponDetail(couponId:number){
     let dialogref = this.dialog.open(CouponDetailDialog, {
       data: { couponId: couponId },
-      width:'800px',
-      maxWidth:'800px'
+      maxWidth: '100vw',
+      width: 'auto',
     });
     dialogref.afterClosed().subscribe((result:any) => {
       if(result){

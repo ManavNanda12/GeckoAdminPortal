@@ -275,3 +275,7 @@
     min-width: 120px;
   }
 }
+
+::ng-deep .swal2-backdrop-show {
+    z-index: 888888888 !important;
+}
