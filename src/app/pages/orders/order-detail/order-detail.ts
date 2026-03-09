@@ -10,10 +10,10 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-order-detail',
   templateUrl: './order-detail.html',
   styleUrl: './order-detail.css',
-  standalone: false
+  standalone: false,
 })
 export class OrderDetail {
- orderId: any;
+  orderId: any;
   orderDetails: any;
 
   constructor(
@@ -21,7 +21,7 @@ export class OrderDetail {
     private readonly api: ApiUrlHelper,
     private readonly commonService: Common,
     private readonly spinner: NgxSpinnerService,
-    private readonly toastr: ToastrService
+    private readonly toastr: ToastrService,
   ) {
     this.orderId = inject(MAT_DIALOG_DATA).orderId;
     console.log(this.orderId);
@@ -31,21 +31,24 @@ export class OrderDetail {
   getOrderDetails() {
     this.spinner.show();
     let api = this.api.Order.GetOrderDetails.replace('{orderId}', this.orderId);
-    this.commonService.getData(api).pipe().subscribe({
-      next: (response) => {
-        if (response.success) {
-          this.orderDetails = response.data;
-          console.log(this.orderDetails);
-        }
-      },
-      error: (error) => {
-        console.log(error);
-        this.toastr.error('Failed to load order details');
-      },
-      complete: () => {
-        this.spinner.hide();
-      }
-    });
+    this.commonService
+      .getData(api)
+      .pipe()
+      .subscribe({
+        next: (response) => {
+          if (response.success) {
+            this.orderDetails = response.data;
+            console.log(this.orderDetails);
+          }
+        },
+        error: (error) => {
+          console.log(error);
+          this.toastr.error('Failed to load order details');
+        },
+        complete: () => {
+          this.spinner.hide();
+        },
+      });
   }
 
   handleImageError(product: any) {
@@ -59,18 +62,18 @@ export class OrderDetail {
       1: 'processing',
       2: 'shipped',
       3: 'delivered',
-      4: 'cancelled'
+      4: 'cancelled',
     };
     return statusMap[status] || 'pending';
   }
 
   getOrderStatusIcon(status: number): string {
     const icons: any = {
-      1: 'fa-regular fa-clock',           // Pending
-      2: 'fa-solid fa-gears',             // Processing
-      3: 'fa-solid fa-truck',             // Shipped
-      4: 'fa-solid fa-circle-check',      // Delivered
-      5: 'fa-solid fa-circle-xmark'       // Cancelled
+      1: 'fa-regular fa-clock', // Pending
+      2: 'fa-solid fa-gears', // Processing
+      3: 'fa-solid fa-truck', // Shipped
+      4: 'fa-solid fa-circle-check', // Delivered
+      5: 'fa-solid fa-circle-xmark', // Cancelled
     };
     return icons[status] || 'fa-regular fa-clock';
   }
@@ -81,7 +84,7 @@ export class OrderDetail {
       2: 'Processing',
       3: 'Shipped',
       4: 'Delivered',
-      5: 'Cancelled'
+      5: 'Cancelled',
     };
     return textMap[status] || 'Unknown';
   }
@@ -99,7 +102,7 @@ export class OrderDetail {
         0: 'pending',
         1: 'succeeded',
         2: 'failed',
-        3: 'canceled'
+        3: 'canceled',
       };
       return statusMap[paymentStatus] || 'pending';
     }
@@ -108,10 +111,10 @@ export class OrderDetail {
 
   getPaymentStatusIcon(paymentStatus: number): string {
     const icons: any = {
-      0: 'fa-solid fa-hourglass-half',      // Pending
-      1: 'fa-solid fa-circle-check',        // Succeeded
-      2: 'fa-solid fa-circle-xmark',        // Failed
-      3: 'fa-solid fa-ban'                  // Canceled
+      0: 'fa-solid fa-hourglass-half', // Pending
+      1: 'fa-solid fa-circle-check', // Succeeded
+      2: 'fa-solid fa-circle-xmark', // Failed
+      3: 'fa-solid fa-ban', // Canceled
     };
     return icons[paymentStatus] || 'fa-solid fa-hourglass-half';
   }
@@ -124,7 +127,7 @@ export class OrderDetail {
         0: 'Pending',
         1: 'Paid',
         2: 'Failed',
-        3: 'Canceled'
+        3: 'Canceled',
       };
       return textMap[paymentStatus] || 'Pending';
     }
@@ -132,7 +135,11 @@ export class OrderDetail {
 
   getPaymentMethodIcon(method: string): string {
     const methodLower = method?.toLowerCase() || '';
-    if (methodLower.includes('card') || methodLower.includes('credit') || methodLower.includes('debit')) {
+    if (
+      methodLower.includes('card') ||
+      methodLower.includes('credit') ||
+      methodLower.includes('debit')
+    ) {
       return 'fa-solid fa-credit-card';
     } else if (methodLower.includes('paypal')) {
       return 'fa-brands fa-paypal';

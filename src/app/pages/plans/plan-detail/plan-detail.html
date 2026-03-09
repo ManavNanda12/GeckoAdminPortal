@@ -1,1 +1,199 @@
-<p>plan-detail works!</p>
+<div class="plan-detail-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-left">
+      <button class="back-btn" (click)="goBack()">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <div class="header-title-section">
+        <h1 class="page-title">
+          <i class="fa-solid fa-crown"></i>
+          Subscription Plan Details
+        </h1>
+        <p class="plan-name" *ngIf="planDetails && planDetails.length > 0">{{ planDetails[0].planName }}</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="action-btn export-btn" (click)="exportSubscribers()">
+        <i class="fa-solid fa-download"></i>
+        Export Subscribers
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="!planDetails" class="loading-state">
+    <div class="loading-spinner"></div>
+    <p>Loading plan details...</p>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="planDetails && planDetails.length > 0" class="page-content">
+    
+    <!-- Stats Cards Row -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon subscribers-icon">
+          <i class="fa-solid fa-users"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ planDetails.length }}</span>
+          <span class="stat-label">Total Subscribers</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon active-icon">
+          <i class="fa-solid fa-user-check"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ getActiveSubscribers() }}</span>
+          <span class="stat-label">Active Subscriptions</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon canceled-icon">
+          <i class="fa-solid fa-user-xmark"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ getCanceledSubscribers() }}</span>
+          <span class="stat-label">Canceled</span>
+        </div>
+      </div>
+
+      <div class="stat-card income-card">
+        <div class="stat-icon income-icon">
+          <i class="fa-solid fa-sack-dollar"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">₹{{ calculatePlanIncome() | number:'1.0-0' }}</span>
+          <span class="stat-label">Plan Income</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan Info Card -->
+    <div class="plan-info-card" *ngIf="planDetails[0].planDescription || planDetails[0].benefits">
+      <div class="info-section">
+        <h3 class="section-title">
+          <i class="fa-solid fa-info-circle"></i>
+          Plan Information
+        </h3>
+        <p class="plan-description">{{ planDetails[0].planDescription }}</p>
+      </div>
+
+      <div class="benefits-section" *ngIf="planDetails[0].benefits">
+        <h3 class="section-title">
+          <i class="fa-solid fa-gift"></i>
+          Benefits
+        </h3>
+        <div class="benefits-tags">
+          <span class="benefit-tag" *ngFor="let benefit of parseBenefits(planDetails[0].benefits)">
+            <i [class]="getBenefitIcon(benefit.BenefitKey)"></i>
+            {{ getBenefitText(benefit) }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subscribers Table Card -->
+    <div class="subscribers-card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <i class="fa-solid fa-users"></i>
+          Subscribers
+          <span class="count-badge">{{ planDetails.length }}</span>
+        </h2>
+        <div class="header-filters">
+          <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" placeholder="Search by name or email..." [(ngModel)]="searchTerm" (input)="filterSubscribers()">
+          </div>
+          <div class="filter-tabs">
+            <button 
+              class="filter-tab" 
+              [class.active]="filterStatus === 'all'"
+              (click)="setFilter('all')">
+              All ({{ planDetails.length }})
+            </button>
+            <button 
+              class="filter-tab" 
+              [class.active]="filterStatus === 'active'"
+              (click)="setFilter('active')">
+              Active ({{ getActiveSubscribers() }})
+            </button>
+            <button 
+              class="filter-tab" 
+              [class.active]="filterStatus === 'canceled'"
+              (click)="setFilter('canceled')">
+              Canceled ({{ getCanceledSubscribers() }})
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-container">
+        <table class="subscribers-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Subscriber</th>
+              <th>Status</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Subscribed On</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let subscriber of getFilteredSubscribers(); let i = index" class="table-row">
+              <td class="row-number">{{ i + 1 }}</td>
+              <td class="subscriber-cell">
+                <div class="subscriber-info">
+                  <div class="avatar">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                  <div class="info">
+                    <span class="name">{{ subscriber.fullName }}</span>
+                    <span class="email">{{ subscriber.email }}</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="status-cell">
+                  <span class="status-badge" [ngClass]="getStatusClass(subscriber.subscriptionStatus)">
+                    <i [class]="getStatusIcon(subscriber.subscriptionStatus)"></i>
+                    {{ subscriber.subscriptionStatus | titlecase }}
+                  </span>
+                  <span class="cancel-warning" *ngIf="subscriber.cancelAtPeriodEnd">
+                    <i class="fa-solid fa-exclamation-triangle"></i>
+                    Cancels at period end
+                  </span>
+                </div>
+              </td>
+              <td class="date-cell">{{ subscriber.currentPeriodStart | date:'MMM dd, yyyy' }}</td>
+              <td class="date-cell">{{ subscriber.currentPeriodEnd | date:'MMM dd, yyyy' }}</td>
+              <td class="date-cell">{{ subscriber.createdAt | date:'MMM dd, yyyy' }}</td>
+              <td class="actions-cell">
+                <button class="icon-btn view-btn" title="View Details">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+                <button class="icon-btn message-btn" title="Send Message">
+                  <i class="fa-solid fa-envelope"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Empty State -->
+        <div class="empty-state" *ngIf="getFilteredSubscribers().length === 0">
+          <i class="fa-solid fa-inbox"></i>
+          <p>No subscribers found</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
