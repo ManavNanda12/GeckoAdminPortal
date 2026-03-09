@@ -51,7 +51,7 @@ ModuleRegistry.registerModules([AllCommunityModule]);
   declarations: [
     App,
     ConfirmationModel,
-    Login  
+    Login
   ],
   imports: [
     BrowserModule,

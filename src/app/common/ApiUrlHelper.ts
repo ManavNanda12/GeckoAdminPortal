@@ -60,4 +60,7 @@ export class ApiUrlHelper {
     GetSitePolicies: "site-policy/get-site-policies",
     SaveSitePolicies: "site-policy/update-policy"
   }
+  Plans = {
+    GetPlans:"plans/get-plan-list/{CustomerId}"
+  }
 }

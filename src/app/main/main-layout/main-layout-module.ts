@@ -50,6 +50,10 @@ const routes: Routes = [
       {
         path:'site-policy',
         loadChildren:()=>import('../../pages/site-policy/site-policy-module').then(m=>m.SitePolicyModule)
+      },
+      {
+        path:'plans',
+        loadChildren:()=>import('../../pages/plans/plans-module').then(m=>m.PlansModule)
       }
     ]
   }
