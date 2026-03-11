@@ -20,6 +20,7 @@ export class SitePolicy implements OnInit {
   facebookLink:string | any = '';
   twitterLink:string | any = '';
   youtubeLink:string | any = '';
+  taxPercentage:number | any = 0;
   editorConfig: AngularEditorConfig = {
     editable: true,
       spellcheck: true,
@@ -89,6 +90,7 @@ export class SitePolicy implements OnInit {
           this.twitterLink = response?.data[3]?.policyDescription;
           this.instagramLink = response?.data[4]?.policyDescription;
           this.youtubeLink = response?.data[5]?.policyDescription;
+          this.taxPercentage = response?.data[6]?.policyDescription;
         }
       },
       error:(error:any) =>{
