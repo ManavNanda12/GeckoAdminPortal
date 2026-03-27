@@ -84,13 +84,14 @@ export class SitePolicy implements OnInit {
     this.commonService.getData(this.api.SitePolicy.GetSitePolicies).subscribe({
       next:(response:any) =>{
         if(response?.success){
-          this.termsAndConditions = response?.data[0]?.policyDescription;
-          this.privacyPolicy = response?.data[1]?.policyDescription;
-          this.facebookLink = response?.data[2]?.policyDescription;
-          this.twitterLink = response?.data[3]?.policyDescription;
-          this.instagramLink = response?.data[4]?.policyDescription;
-          this.youtubeLink = response?.data[5]?.policyDescription;
-          this.taxPercentage = response?.data[6]?.policyDescription;
+          console.log(response?.data.filter((item:any) => item.sitePolicyId === 1));
+          this.termsAndConditions = response?.data.filter((item:any) => item.sitePolicyId === 1)[0]?.policyDescription;
+          this.privacyPolicy = response?.data.filter((item:any) => item.sitePolicyId === 2)[0]?.policyDescription;
+          this.facebookLink = response?.data.filter((item:any) => item.sitePolicyId === 3)[0]?.policyDescription;
+          this.twitterLink = response?.data.filter((item:any) => item.sitePolicyId === 4)[0]?.policyDescription;
+          this.instagramLink = response?.data.filter((item:any) => item.sitePolicyId === 5)[0]?.policyDescription;
+          this.youtubeLink = response?.data.filter((item:any) => item.sitePolicyId === 6)[0]?.policyDescription;
+          this.taxPercentage = response?.data.filter((item:any) => item.sitePolicyId === 7)[0]?.policyDescription;
         }
       },
       error:(error:any) =>{
